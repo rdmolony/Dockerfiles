@@ -12,6 +12,12 @@ ENV PYTHONFAULTHANDLER=1 \
 
 WORKDIR /code/
 
+# git for GitHub dependencies
+RUN --mount=type=cache,target=/var/cache/apt \
+    --mount=type=cache,target=/var/lib/apt \
+    apt-get update && apt-get install -y \
+    git
+
 ENV PIP_DEFAULT_TIMEOUT=100 \
     PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
